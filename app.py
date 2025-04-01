@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, jsonify
 import openai
 from dotenv import load_dotenv
+from flask_cors import CORS  # Import CORS
 
 # Load environment variables from .env file
 load_dotenv()
@@ -11,6 +12,9 @@ openai.api_key = os.getenv("GROQ_API_KEY")
 openai.api_base = "https://api.groq.com/openai/v1"
 
 app = Flask(__name__)
+
+# Enable CORS for all domains (or specify your domain if needed)
+CORS(app)  # Allow all domains to access your backend
 
 # Store conversation history
 conversation_history = {}
